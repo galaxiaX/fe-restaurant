@@ -40,7 +40,7 @@ const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
             <p>Latitude: {restaurant.latitude}</p>
             <p>Longitude: {restaurant.longitude}</p>
             <RestaurantMap
-              src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyDc1TkcvUBnzrNR1pAP72SUXJP1TwCRv88&q=place_id:${restaurant.placeId}`}
+              src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_API_KEY}&q=place_id:${restaurant.placeId}`}
               allowFullScreen
             />
           </RestaurantDetails>
