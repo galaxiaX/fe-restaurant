@@ -45,13 +45,13 @@ const SearchBox = () => {
       <div>
         <input
           type="text"
-          placeholder="Region"
+          placeholder="Region ex. th, jp, us"
           value={region}
           onChange={(event) => setRegion(event.target.value)}
         />
         <input
           type="text"
-          placeholder="Keyword"
+          placeholder="Keyword ex. ไก่ทอด, pizza"
           value={keyword}
           onChange={(event) => setKeyword(event.target.value)}
         />
