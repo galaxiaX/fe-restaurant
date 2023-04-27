@@ -7,7 +7,7 @@ import axios from "axios";
 const SearchBox = () => {
   const [region, setRegion] = useState("");
   const [keyword, setKeyword] = useState("");
-  const [radius, setRadius] = useState(3000);
+  const [radius, setRadius] = useState(3);
 
   const dispatch = useDispatch();
 
@@ -17,9 +17,11 @@ const SearchBox = () => {
     const fetchRestaurants = async () => {
       const initialRegion = region ? region : "th";
       const initialKeyword = keyword ? keyword : "food";
+      const metersRadius = radius * 1000;
+      console.log(metersRadius);
       try {
         const response = await axios.get(
-          `/api/restaurants?region=${initialRegion}&keyword=${initialKeyword}&radius=${radius}`,
+          `/api/restaurants?region=${initialRegion}&keyword=${initialKeyword}&radius=${metersRadius}`,
           {
             withCredentials: true,
           }
@@ -61,17 +63,17 @@ const SearchBox = () => {
           Radius:
           <input
             type="number"
-            min="500"
-            max="1000000"
+            min="1"
+            max="1000"
             value={radius}
             onChange={(event) => setRadius(event.target.valueAsNumber)}
           />
-          meters
+          km
         </div>
         <input
           type="range"
-          min="500"
-          max="1000000"
+          min="1"
+          max="1000"
           value={radius}
           onChange={(event) => setRadius(event.target.valueAsNumber)}
         />
