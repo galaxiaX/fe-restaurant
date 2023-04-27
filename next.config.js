@@ -13,7 +13,7 @@ module.exports = {
     return [
       {
         source: "/api/:path*",
-        destination: "https://api.example.com/:path*",
+        destination: "https://placesearch-back/:path*",
       },
     ];
   },
