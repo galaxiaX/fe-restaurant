@@ -12,10 +12,6 @@ const Home = () => {
     <>
       <Head>
         <title>FoodScout</title>
-        <link
-          href="https://fonts.googleapis.com/css?family=Sarabun&display=optional"
-          rel="stylesheet"
-        />
       </Head>
       <Layout>
         <Body />
