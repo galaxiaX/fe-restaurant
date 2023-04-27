@@ -62,7 +62,7 @@ const SearchBox = () => {
           <input
             type="number"
             min="500"
-            max="10000"
+            max="1000000"
             value={radius}
             onChange={(event) => setRadius(event.target.valueAsNumber)}
           />
@@ -71,7 +71,7 @@ const SearchBox = () => {
         <input
           type="range"
           min="500"
-          max="10000"
+          max="1000000"
           value={radius}
           onChange={(event) => setRadius(event.target.valueAsNumber)}
         />
