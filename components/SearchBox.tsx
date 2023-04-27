@@ -21,7 +21,7 @@ const SearchBox = () => {
         const response = await axios.get(
           `/api/restaurants?location=${initialLocation}&keyword=${initialKeyword}&radius=${radius}`,
           {
-            withCredentials: true, // Set this option to true for credentialed CORS requests
+            withCredentials: true,
           }
         );
         const restaurants = response.data;
