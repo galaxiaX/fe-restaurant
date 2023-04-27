@@ -19,7 +19,10 @@ const SearchBox = () => {
       const initialKeyword = keyword ? keyword : "กิน";
       try {
         const response = await axios.get(
-          `/api/restaurants?location=${initialLocation}&keyword=${initialKeyword}&radius=${radius}`
+          `/api/restaurants?location=${initialLocation}&keyword=${initialKeyword}&radius=${radius}`,
+          {
+            withCredentials: true, // Set this option to true for credentialed CORS requests
+          }
         );
         const restaurants = response.data;
         dispatch(setRestaurants(restaurants));
