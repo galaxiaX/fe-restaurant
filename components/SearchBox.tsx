@@ -5,7 +5,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 const SearchBox = () => {
-  const [location, setLocation] = useState("");
+  const [region, setRegion] = useState("");
   const [keyword, setKeyword] = useState("");
   const [radius, setRadius] = useState(3000);
 
@@ -15,11 +15,11 @@ const SearchBox = () => {
     let timeoutId: ReturnType<typeof setTimeout>;
 
     const fetchRestaurants = async () => {
-      const initialLocation = location ? location : "bangkok";
-      const initialKeyword = keyword ? keyword : "กิน";
+      const initialRegion = region ? region : "th";
+      const initialKeyword = keyword ? keyword : "food";
       try {
         const response = await axios.get(
-          `/api/restaurants?location=${initialLocation}&keyword=${initialKeyword}&radius=${radius}`,
+          `/api/restaurants?region=${initialRegion}&keyword=${initialKeyword}&radius=${radius}`,
           {
             withCredentials: true,
           }
@@ -31,23 +31,23 @@ const SearchBox = () => {
       }
     };
 
-    if (location || keyword || radius) {
+    if (region || keyword || radius) {
       timeoutId = setTimeout(fetchRestaurants, 500);
     }
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [dispatch, keyword, location, radius]);
+  }, [dispatch, keyword, region, radius]);
 
   return (
     <SearchForm>
       <div>
         <input
           type="text"
-          placeholder="Location"
-          value={location}
-          onChange={(event) => setLocation(event.target.value)}
+          placeholder="Region"
+          value={region}
+          onChange={(event) => setRegion(event.target.value)}
         />
         <input
           type="text"
