@@ -4,6 +4,48 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import axios from "axios";
 
+const SearchForm = styled.form`
+  display: flex;
+  gap: 2rem;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  > label {
+    display: flex;
+    flex-direction: column;
+
+    div {
+      height: 35px;
+    }
+  }
+
+  input:not([type="range"]) {
+    border-radius: 10px;
+    height: 32px;
+    padding-left: 4px;
+    margin-left: 4px;
+  }
+
+  input[type="number"] {
+    border-radius: 10px;
+    height: 32px;
+    width: 52px;
+    padding-left: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    label {
+      display: none;
+    }
+  }
+`;
+
 const SearchBox = () => {
   const [region, setRegion] = useState("");
   const [keyword, setKeyword] = useState("");
@@ -81,47 +123,5 @@ const SearchBox = () => {
     </SearchForm>
   );
 };
-
-const SearchForm = styled.form`
-  display: flex;
-  gap: 2rem;
-
-  > div {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  > label {
-    display: flex;
-    flex-direction: column;
-
-    div {
-      height: 35px;
-    }
-  }
-
-  input:not([type="range"]) {
-    border-radius: 10px;
-    height: 32px;
-    padding-left: 4px;
-    margin-left: 4px;
-  }
-
-  input[type="number"] {
-    border-radius: 10px;
-    height: 32px;
-    width: 52px;
-    padding-left: 4px;
-    margin-left: 4px;
-    margin-right: 4px;
-  }
-
-  @media only screen and (max-width: 600px) {
-    label {
-      display: none;
-    }
-  }
-`;
 
 export default SearchBox;

@@ -14,42 +14,6 @@ interface RestaurantCardProps {
   };
 }
 
-const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const handleCardClick = () => {
-    setIsExpanded(!isExpanded);
-  };
-
-  return (
-    <RestaurantCardWrapper isExpanded={isExpanded} onClick={handleCardClick}>
-      {restaurant.photoUrl ? (
-        <RestaurantPhotoWrapper>
-          <RestaurantPhoto src={restaurant.photoUrl} alt={restaurant.name} />
-        </RestaurantPhotoWrapper>
-      ) : (
-        <RestaurantNoPhoto>no photos</RestaurantNoPhoto>
-      )}
-      <RestaurantInfoWrapper>
-        <RestaurantName>{restaurant.name}</RestaurantName>
-        <RestaurantAddress>{restaurant.address}</RestaurantAddress>
-        <RestaurantRating>Rating: {restaurant.rating}</RestaurantRating>
-        <RestaurantStatus>Status: {restaurant.status}</RestaurantStatus>
-        {isExpanded && (
-          <RestaurantDetails>
-            <p>Latitude: {restaurant.latitude}</p>
-            <p>Longitude: {restaurant.longitude}</p>
-            <RestaurantMap
-              src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_API_KEY}&q=place_id:${restaurant.placeId}`}
-              allowFullScreen
-            />
-          </RestaurantDetails>
-        )}
-      </RestaurantInfoWrapper>
-    </RestaurantCardWrapper>
-  );
-};
-
 const RestaurantCardWrapper = styled.div<{ isExpanded: boolean }>`
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -148,5 +112,45 @@ const RestaurantMap = styled.iframe`
   border-radius: 10px;
   margin-top: 16px;
 `;
+
+const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleCardClick = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  return (
+    <RestaurantCardWrapper isExpanded={isExpanded} onClick={handleCardClick}>
+      {restaurant.photoUrl ? (
+        <RestaurantPhotoWrapper>
+          <RestaurantPhoto
+            src={restaurant.photoUrl}
+            alt={restaurant.name}
+            loading="lazy"
+          />
+        </RestaurantPhotoWrapper>
+      ) : (
+        <RestaurantNoPhoto>no photos</RestaurantNoPhoto>
+      )}
+      <RestaurantInfoWrapper>
+        <RestaurantName>{restaurant.name}</RestaurantName>
+        <RestaurantAddress>{restaurant.address}</RestaurantAddress>
+        <RestaurantRating>Rating: {restaurant.rating}</RestaurantRating>
+        <RestaurantStatus>Status: {restaurant.status}</RestaurantStatus>
+        {isExpanded && (
+          <RestaurantDetails>
+            <p>Latitude: {restaurant.latitude}</p>
+            <p>Longitude: {restaurant.longitude}</p>
+            <RestaurantMap
+              src={`https://www.google.com/maps/embed/v1/place?key=${process.env.NEXT_PUBLIC_API_KEY}&q=place_id:${restaurant.placeId}`}
+              allowFullScreen
+            />
+          </RestaurantDetails>
+        )}
+      </RestaurantInfoWrapper>
+    </RestaurantCardWrapper>
+  );
+};
 
 export default RestaurantCard;
